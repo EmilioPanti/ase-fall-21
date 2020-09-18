@@ -1,30 +1,27 @@
 # calculator.py
 
 def sum(m,n):
-    i = 0
-    n = abs(n)
-    
-    while i <= n:
-        m += 1
-        i += 1
-    
-    return m
-    
+    tot = m
+    for i in (0, n):
+        if (n > 0):
+            tot += 1
+        else:
+            tot -= 1
+    return tot
+
+
 def divide(m,n):
-    isNegative = (m < 0 and n > 0) or (m > 0 and n < 0)
-    m = abs(m)
-    
     if n == 0:
         # no!
-        raise Exception("Division by zero!")
-    d = 0
+        raise ZeroDivisionError
     
-    while m > 0:
+    isNegative = m<0 and n>0 or m>0 and n<0
+
+    m = abs(m)
+    n = abs(n)
+    result = 0
+    while ((m - n) >= 0):
+        result = result + 1
         m -= n
-        d += 1
-    return d
-        
-        
-    
-        
-print(divide(8,4))
+
+    return -result if isNegative else result
